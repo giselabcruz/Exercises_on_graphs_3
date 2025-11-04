@@ -149,8 +149,8 @@ def run():
     seed    = 8
     rng     = random.Random(seed)
 
-    os.makedirs("plots", exist_ok=True)
-    os.makedirs("csv", exist_ok=True)
+    os.makedirs("../plots", exist_ok=True)
+    os.makedirs("../csv", exist_ok=True)
 
     avg_bfs, avg_dij = [], []
     err_bfs, err_dij = [], []
@@ -158,10 +158,10 @@ def run():
 
     ops_rows = []
 
-    with open("csv/summary_per_size.csv", "w") as fsum:
+    with open("../csv/summary_per_size.csv", "w") as fsum:
         fsum.write("n,avg_bfs_ms,ci_bfs_ms,avg_dij_ms,ci_dij_ms,ratio_dij_over_bfs\n")
 
-    with open("csv/trials.csv", "w") as ftr:
+    with open("../csv/trials.csv", "w") as ftr:
         ftr.write("n,algo,time_ms,edge_checks,queue_push,pq_push,pq_pop,relax,path_len,distance\n")
 
         for n in sizes:
@@ -189,7 +189,7 @@ def run():
             ratio = (md / mb) if mb > 0 else float("inf")
             ratios.append(ratio)
 
-            with open("csv/summary_per_size.csv", "a") as fsum:
+            with open("../csv/summary_per_size.csv", "a") as fsum:
                 fsum.write(f"{n},{mb:.6f},{hb:.6f},{md:.6f},{hd:.6f},{ratio:.6f}\n")
 
     crossover_n = None
@@ -229,7 +229,7 @@ def run():
         vals = [row[idx] for row in ops_rows if row[0]==algo and row[1]==n]
         return stats.mean(vals) if vals else 0.0
 
-    with open("csv/ops_summary_per_size.csv", "w") as fops:
+    with open("../csv/ops_summary_per_size.csv", "w") as fops:
         fops.write("n,algo,edge_checks,queue_push,pq_push,pq_pop,relax,path_len\n")
         for n in sizes:
             bfs_edge = mean_for("BFS", n, 2); bfs_q = mean_for("BFS", n, 3)
