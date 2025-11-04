@@ -2,7 +2,7 @@
 
 ## **Overview**
 This project implements an empirical benchmark to compare two classical shortest-path algorithms:
-- **Breadth-First Search (BFS)** for **unweighted graphs**, and  
+- **Breadth-First Search (BFS)** for **unweighted graphs**.
 - **Dijkstra’s Algorithm** for **weighted graphs**.
 
 The main goal is to **analyze runtime scalability** and **operation-level efficiency** as the graph size increases.  
@@ -28,8 +28,8 @@ pip install -r requirements.txt
 ```
 ---
 
-## **Objectives**
-**Goal:** Empirically compare Dijkstra’s algorithm and BFS in terms of **runtime** and **scalability**.
+## **Tasks**
+>Empirically compare Dijkstra’s algorithm and BFS in terms of **runtime** and **scalability**.
 
 **Tasks:**
 1. Generate random graphs with varying sizes and random edge weights.  
@@ -37,23 +37,19 @@ pip install -r requirements.txt
 3. Measure both execution time and number of operations as input size grows.  
 4. Plot results and analyze when Dijkstra’s overhead becomes significant.
 
-**Deliverables:**
-- A 4–6 page report with plots and discussion.  
-- Annotated, reproducible Python code.
-
 ---
 
 ## **Experimental Setup**
 
-| Parameter | Description |
-|------------|-------------|
-| **Graph model** | Erdős–Rényi random graph `G(n, p)` |
-| **Edge probability (p)** | 0.01 (sparse connectivity) |
-| **Edge weights (for Dijkstra)** | Uniformly distributed in [1, 10] |
-| **Number of trials** | 300 (per graph size) |
-| **Graph sizes tested** | 200, 500, 1000, 2000, 5000, 8000 nodes |
+| Parameter | Description                            |
+|------------|----------------------------------------|
+| **Graph model** | Erdős–Rényi random graph `G(n, p)`     |
+| **Edge probability (p)** | 0.01 (sparse connectivity)             |
+| **Edge weights (for Dijkstra)** | Uniformly distributed in [1, 10]       |
+| **Number of trials** | 1000 (per graph size)                  |
+| **Graph sizes tested** | 2, 10, 30, 50, 100, 200, 500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000 nodes |
 | **Algorithms** | BFS (unweighted) & Dijkstra (weighted) |
-| **Language & Libraries** | Python 3.9+, `networkx`, `matplotlib` |
+| **Language & Libraries** | Python 3.9+, `networkx`, `matplotlib`  |
 
 Each algorithm was executed multiple times with randomly selected source–target pairs within the same connected component.  
 Both **execution time (ms)** and **algorithmic operations** were recorded.
@@ -77,7 +73,7 @@ For each run, the following were measured:
 - **Path length and distance** when reachable.
 
 ### **3. Statistical Aggregation**
-Each experiment ran for 300 random trials.  
+Each experiment ran for 1000 random trials.  
 Results were averaged and confidence intervals (95% CI) computed via standard error propagation.
 
 ---
@@ -139,7 +135,7 @@ Example figure (ratio plot):
 
 ---
 
-## ** Conclusions**
+## **Conclusions**
 
 | Aspect | BFS | Dijkstra |
 |--------|-----|-----------|
@@ -149,8 +145,7 @@ Example figure (ratio plot):
 | **Overhead** | Minimal | Significant (heap ops) |
 | **Scalability** | Excellent | Limited by priority queue |
 
-**Key takeaway:**  
-> The crossover point where Dijkstra becomes slower than BFS occurs almost immediately (n ≈ 200), and its overhead dominates across all tested graph sizes.
+The crossover point where Dijkstra becomes slower than BFS occurs almost immediately (n ≈ 200), and its overhead dominates across all tested graph sizes.
 
 ---
 
