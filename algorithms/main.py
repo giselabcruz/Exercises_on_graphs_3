@@ -4,9 +4,7 @@ from Dijkstra import dijkstra_weighted
 import random
 import networkx as nx
 
-
 def generate_random_graph_unweighted_adjlist(n_nodes, p=0.2, seed=42):
-    """Para BFS: dict[u] -> list[v]."""
     G = nx.fast_gnp_random_graph(n=n_nodes, p=p, seed=seed)
     graph = {u: [] for u in G.nodes()}
     for u, v in G.edges():
@@ -16,7 +14,6 @@ def generate_random_graph_unweighted_adjlist(n_nodes, p=0.2, seed=42):
 
 
 def generate_random_graph_weighted_dict(n_nodes, p=0.2, low=1.0, high=10.0, seed=42):
-    """Para Dijkstra: dict[u] -> dict[v] = peso."""
     rng = random.Random(seed)
     G = nx.fast_gnp_random_graph(n=n_nodes, p=p, seed=seed)
     graph = {u: {} for u in G.nodes()}
@@ -41,4 +38,4 @@ if __name__ == "__main__":
     if path:
         print(f"Path: {path} | Distance: {dist:.2f}")
     else:
-        print("No hay camino entre esos nodos (grafo desconectado).")
+        print("No path found between the selected nodes (graph is disconnected).")
