@@ -11,7 +11,7 @@ def generate_random_graph_unweighted_adjlist(n_nodes, p=0.2, seed=42):
     graph = {u: [] for u in G.nodes()}
     for u, v in G.edges():
         graph[u].append(v)
-        graph[v].append(u)  # no dirigido
+        graph[v].append(u)
     return graph
 
 
